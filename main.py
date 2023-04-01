@@ -15,6 +15,18 @@ class Twamp:
     def person_info(self):
         pass 
     
+    def meal_plan(self):
+        print('Meal Plans Available: All Access, Block 125, Block 100, Commuter 50, Commuter 25')
+        plan = input()
+        print('Please enter your chosen meal plan: ' + plan)
+
+        if plan.lower == 'all access' or 'block 125':
+            self.d_dollars = 400
+        if plan.lower == 'block 100':
+            self.d_dollars = 500
+        if plan.lower == 'commuter 50' or 'commuter 25':
+            self.d_dollars = 560
+
     def display(self):
         pass
 
@@ -37,5 +49,7 @@ class Twamp:
         pass 
 
     def disaster(self, disaster):
+        if self.d_dollars == 0:
+            print('You have starved')
         pass 
 
