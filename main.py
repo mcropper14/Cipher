@@ -51,5 +51,5 @@ class Twamp:
     def disaster(self, disaster):
         if self.d_dollars == 0:
             print('You have starved')
-        pass 
+        pass
 
