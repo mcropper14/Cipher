@@ -14,12 +14,9 @@ class Twamp:
         self.name = ""
         self.caffinate = 0 
         self.sleep = 0 
-        self.stres = 50 
+        self.stres = 0
         self.hours = 1 
-        
-
-
-        self.stress = 0 
+      
         self.hygiene = 0
         self.schedule = 0
 
@@ -106,9 +103,9 @@ class Twamp:
         maj = input()
         print('Choose Your Fate Wisely: ' + maj)
         if maj.lower() == 'stem':
-            self.stress += 20
+            self.stres += 20
         if maj.lower() == 'not stem':
-            self.stress -= 20 
+            self.stres -= 20 
 
     def classes(self):
         c_num = input()
