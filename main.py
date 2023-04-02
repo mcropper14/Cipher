@@ -1,4 +1,3 @@
-
 import random 
 from art import *
 import time 
@@ -27,7 +26,7 @@ class Twamp:
 
 
     def set_name(self):
-        name = input("Enter a name for your twamp: ")
+        name = input("Enter a name for your TWAMP: ")
         self.name = name.capitalize()
         output = "Welcome to William and Mary " + self.name + "!"
         print(output)
@@ -139,8 +138,7 @@ class Twamp:
 
         
     def spend(self):
-        choice = input("Where do you want to spend your dining dollars: Caf or Sadler or Aromas ")
-        print("Caf or Sadler?")
+        choice = input("Where do you want to spend your dining dollars: Caf or Sadler or Aromas? ")
         if self.d_dollars > 0:
             if choice.lower() == "caf":
                 self.d_dollars -= 10 
@@ -187,7 +185,7 @@ class Twamp:
     
 
     def swem(self):
-        self.study += random.randint(1, 12)
+        self.study = random.randint(1, 12)
         print("Going to Swem to study for " + str(self.study) + " hours.")
         print("\n")
         if self.study > 3:
@@ -243,7 +241,6 @@ class Twamp:
 
 
     def disaster(self):
-        #poss_diss_list = [insta_hack, forgot_hw, dorm_fire]
         poss_diss = ['your instgram was hacked', 'The dorm fire alarm went off when there was actually a fire', 'You forgot there was a test']
         diss = random.choice(poss_diss)
         print(diss)
@@ -343,7 +340,7 @@ class Twamp:
             for option in options:
                 print(" \n "+ option)
             print(" \n ")
-            pick = input("Pick a option: ")
+            pick = input("Pick an option: ")
             if pick.lower() == "spend":
                 self.spend()
                 action_count += 1
@@ -369,7 +366,7 @@ class Twamp:
             print('\n')
             go_to_class = input("Do you want to go to your classes: ")
             if go_to_class.lower() == "yes" or go_to_class.lower() == "y":
-                print("Way to be a twamp, you decided to go to class!")
+                print("Way to be a TWAMP, you decided to go to class!")
                 self.twampness += 5 
                 self.caffinate += 5
                 self.choices()
@@ -377,12 +374,13 @@ class Twamp:
             else:
                 print('\n')
                 print("Wow, you must be skipping class to study.")
-                print("Typical Twamp behavior")
+                print("Typical TWAMP behavior")
                 self.twampness += 10 
                 self.stres += 5 
                 self.happiness += 10 
                 self.choices()
                 self.exams()
+                self.disaster()
         
         print("Congrats!! You survived William and Mary!")
         print("Congratulations!")
@@ -411,16 +409,7 @@ if __name__ == '__main__':
     tprint("TWAMP Simulator")
 
     tprint("Welcome Home!")
-    #tprint("You Belong Here!")
 
     test = Twamp()
     test.main_game()
-    test.new_day(7)
-   
-    
-
-
-    
-    
-    
-  
+    test.new_day(3)
