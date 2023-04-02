@@ -248,14 +248,30 @@ class Twamp:
            print('You are stressed and dropping out seems like a better idea everyday. You are slowly losing your youthful optimism. Your stress is now',self.stres)
     
 
+    def shower(self):
+        print(" \n ")
+        print("Congrats, you decided to take a shower!")
+        print(" \n ")
+        print(" \n ")
+        print("\n ")
+        print("\n ")
+        rain_chars = ['.', ',', ':', ';', '`']
+        for i in range(25):
+            col = random.randint(1, 80)
+            row = random.randint(10, 20)
+            print('\033[{};{}H'.format(row, col), end='')
+            print(random.choice(rain_chars), end='')
+            time.sleep(0.1)
+            print('\n')
+        if self.maj.lower() == "stem":
+            print(" \n ")
+            print("You broke the sterotype by showering as a stem major!")
+            self.hygiene += 5
+            self.health += 2 
+        else:
+            self.hygiene += 10
+            self.health += 2 
 
-    def game_over(self): 
-        choices = ["stress", "disaster", "housing"]
-        choice = random.choice(choices)
-        print("\n")
-        print(" \\  /")
-        print("o----")
-        print(" /  \\")
 
     def housing_crisis(self):
         print("You got kicked out of GGV for setting the fire alarm off!")
@@ -298,7 +314,7 @@ class Twamp:
     def choices(self):
         setup = True 
         while setup:
-            options = ["Spend", "Swem", "Club", "End Day" ]
+            options = ["Spend", "Swem", "Club", "Shower", "End Day" ]
             for option in options:
                 print(" \n "+ option)
             print(" \n ")
@@ -311,6 +327,8 @@ class Twamp:
                 self.club()
             elif pick.lower() == "end day":
                 setup = False 
+            elif pick.lower() == "shower":
+                self.shower()
             else:
                 print("Not a valid option")
 
@@ -326,12 +344,8 @@ class Twamp:
         elif choice == choices[2]:
             self.housing_crisis()
 
-                
-      
 
-
-
-
+ 
 if __name__ == '__main__':
 
     #exampls of twamps 
@@ -353,8 +367,7 @@ if __name__ == '__main__':
     test.main_game()
     test.choices()
     test.random_game()
-    #end game 
-       
+   
     
 
 
