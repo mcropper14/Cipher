@@ -75,7 +75,7 @@ class Twamp:
         if plan.lower() == 'commuter 50' or 'commuter 25':
             self.d_dollars = 560
 
-        print("You spent " + str(self.d_dollars) + " dinning dollars.")
+        print("You now have " + str(self.d_dollars) + " dinning dollars.")
         print("\n")
 
 
@@ -128,7 +128,7 @@ class Twamp:
         print("Going to Swem to study for " + str(self.hours) + " hours.")
         print("\n")
         if self.hours > 3:
-            print("That's ackward, you got kicked out of swem at midnight.")
+            print("That's akward, you got kicked out of swem at midnight.")
             print("Have fun in the 24 hour study room!")
         for hour in range(self.hours):
             self.happiness -= 1 
@@ -249,41 +249,30 @@ class Twamp:
     
 
 
-    def death(self): 
-        if self.d_dollars <= 0:
-            print('You have starved')
-            print("\n")
-            print(" \\  /")
-            print("o----")
-            print(" /  \\")
-        else:
-            print("You have died.")
-            print("\n " + "Game Over!")
+    def game_over(self): 
+        choices = ["stress", "disaster", "housing"]
+        choice = random.choice(choices)
+        print("\n")
+        print(" \\  /")
+        print("o----")
+        print(" /  \\")
 
     def housing_crisis(self):
         print("You got kicked out of GGV for setting the fire alarm off!")
+        print("Kathy Rowe says you have in a tent.")
+        print("This is your new home.")
+        print("Welcome to Tent City!")
+        print("   /\\")
+        print("  /  \\")
+        print(" /    \\")
+        print("/      \\")
+
+        self.twampness += 10 
+        self.health -= 1 
+        self.hygiene -= 20 
+        self.sleep -= 1 
         
-
-    #classes 
-    #timer, notifiys you to go to class 
-    #miss class, happiness goes up, grade range goes down 
-
-
-
-    #get status 
-    #set name 
-    #meal plan
-    #spend 
-    #stress 
-    #swem 
-    #club 
-    #major 
-    #exams 
-    #disaster 
-
-    #options: get status, set name, meal plan, major
-    #random: spend, stress, swem, club, exams, disaster
-
+    
 
     def main_game(self):
         setup = True 
@@ -305,26 +294,37 @@ class Twamp:
                 setup = False 
             else:
                 print("Not a valid option")
+  
+    def choices(self):
+        setup = True 
+        while setup:
+            options = ["Spend", "Swem", "Club", "End Day" ]
+            for option in options:
+                print(" \n "+ option)
+            print(" \n ")
+            pick = input("Pick a option: ")
+            if pick.lower() == "spend":
+                self.spend()
+            elif pick.lower() == "swem":
+                self.swem()
+            elif pick.lower() == "club":
+                self.club()
+            elif pick.lower() == "end day":
+                setup = False 
+            else:
+                print("Not a valid option")
+
 
     def random_game(self):
-        ran_choices = random.randint(2,10)
-        for i in range(ran_choices):
-            choices = ["spend", "stress", "swem", "club", "exams", "disaster", "death"]
-            choice = random.choice(choices)
-            print("\n ")
-            if choice == choices[0]:
-                self.spend()
-            elif choice == choices[1]:
-                self.stress()
-            elif choice == choices[2]:
-                self.swem()
-            elif choice == choices[3]:
-                self.club()
-            elif choice == choices[4]:
-                self.exams()
-            elif choice == choices[5]:
-                self.disaster()
-            
+        choices = ["stress", "disaster", "housing"]
+        choice = random.choice(choices)
+        print("\n ")
+        if choice == choices[0]:
+            self.stress()
+        elif choice == choices[1]:
+            self.disaster()
+        elif choice == choices[2]:
+            self.housing_crisis()
 
                 
       
@@ -351,8 +351,9 @@ if __name__ == '__main__':
     
     
     test.main_game()
+    test.choices()
     test.random_game()
-    test.death()
+    #end game 
        
     
 
