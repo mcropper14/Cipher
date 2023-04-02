@@ -83,15 +83,18 @@ class Twamp:
 
 
     def spend(self):
-        choice = input("Where do you want to spend your dinning dollars: Cafe or Saddler ")
-        print("Cafe or Saddler")
-        if self.d_dollars > 0:
-            if choice.lower() == "cafe":
-                self.d_dollars -= 10 
-            elif choice.lower() == "saddler":
-                self.d_dollars -= 15
+        choice = input("Where do you want to spend your dinning dollars: Cafe or Saddler or Aromas ")
+        
+        
+        if choice.lower() == "cafe":
+            self.d_dollars -= 10 
+        elif choice.lower() == "saddler":
+            self.d_dollars -= 15
+        elif choice.lower() == "aromas":
+            self.d_dollars -= 5 
         else:
-            self.disaster()
+            print("Not a valid place to spend dinning dollars")
+        
     
     
     def stress(self):
@@ -400,8 +403,7 @@ if __name__ == '__main__':
 
 
     test = Twamp()
-    test.exams()
-    test.main_game()
+    #test.main_game()
     test.new_day(7)
    
     
@@ -410,23 +412,4 @@ if __name__ == '__main__':
     
     
     
-    #[print(" \n " + option) for option in options 
-    # if option.lower() == "get status"]
-    #print(input(" \n " + "Pick an option: "))
-
-    
-    
-
   
-
-
-
-    """
-    myra.set_name()
-    myra.meal_plan()
-    myra.major()
-    myra.stress()
-    myra.swem()
-    myra.exams()
-    myra.spend()
-    """
