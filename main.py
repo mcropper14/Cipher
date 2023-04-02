@@ -10,7 +10,7 @@ class Twamp:
     def __init__(self):
         self.happiness = 100
         self.twampness = 0 
-        self.d_dollars = 800 #maybe don't put here
+        self.d_dollars = 0
         self.health = 100
         self.hygiene = 0 
         self.name = ""
@@ -18,23 +18,23 @@ class Twamp:
         self.sleep = 0 
         self.stres = 50 
         self.hours = 1 
+        self.clases = 0
         self.maj =""
         #self.schedule = 0 
 
     def get_status(self):
         print("Attributes: ")
         print("\n " + " Your name is: " + self.name)
-        print("\n " + " Your major is " + self.maj)
+        print("\n " + " Your major is " + self.maj.upper())
         print("\n " + " Your happiness level is: " + str(self.happiness))
         print("\n " + " Your twampness level is: " + str(self.twampness))
-        print("\n " + " You have: " + str(self.d_dollars) + " dinning dollars.")
+        print("\n " + " You have: " + str(self.d_dollars) + " dining dollars.")
         print("\n " + " Your health is: " + str(self.health))
         print("\n " + " Your hygiene is: " + str(self.hygiene))
         print("\n " + " Your level of caffeine consumption: " + str(self.caffinate))
         print("\n " + " Your hours of sleep: " + str(self.sleep))
         print("\n " + " Your stress level is: " + str(self.stres))
 
-       
 
     def get_calc(self):
         total = 100
@@ -47,7 +47,7 @@ class Twamp:
         
     def set_name(self):
         name = input("Enter a name for your twamp: ")
-        self.name = name
+        self.name = name.capitalize()
         output = "Welcome to William and Mary " + self.name + "!"
         print(output)
         print("You Belong Here!")
@@ -57,7 +57,6 @@ class Twamp:
                 / \\
                    
                     """)
-
 
         
     def meal_plan(self):
@@ -69,28 +68,26 @@ class Twamp:
         print("\n")
         if plan.lower() == 'all access' or 'block 125':
             self.d_dollars = 400
-
-        if plan.lower() == 'block 100':
+        elif plan.lower() == 'block 100':
             self.d_dollars = 500
-        if plan.lower() == 'commuter 50' or 'commuter 25':
+        elif plan.lower() == 'commuter 50' or 'commuter 25':
             self.d_dollars = 560
 
-        print("You now have " + str(self.d_dollars) + " dinning dollars.")
+        print("You now have " + str(self.d_dollars) + " dining dollars.")
         print("\n")
 
 
     def spend(self):
-        choice = input("Where do you want to spend your dinning dollars: Cafe or Saddler ")
-        print("Cafe or Saddler")
+        choice = input("Where do you want to spend your dining dollars: Caf or Sadler ")
+        print("Caf or Sadler?")
         if self.d_dollars > 0:
-            if choice.lower() == "cafe":
+            if choice.lower() == "caf":
                 self.d_dollars -= 10 
-            elif choice.lower() == "saddler":
+            elif choice.lower() == "sadler":
                 self.d_dollars -= 15
-        else:
-            self.disaster()
+        print('You now have ' + str(self.d_dollars) + ' dining dollars.')
     
-    
+
     def stress(self):
         print("Calculating Stress Level....")
         self.get_calc()
@@ -124,19 +121,19 @@ class Twamp:
         
         return self.stres
     
+
     def swem(self):
         print("Going to Swem to study for " + str(self.hours) + " hours.")
         print("\n")
         if self.hours > 3:
-            print("That's akward, you got kicked out of swem at midnight.")
+            print("That's awkward, you got kicked out of Swem at midnight.")
             print("Have fun in the 24 hour study room!")
         for hour in range(self.hours):
             self.happiness -= 1 
             self.stres += 1 
             self.sleep -= 1 
             self.caffinate += 1 
-
-        
+ 
 
     def club(self):
         num = int(input("How many clubs do you want to join? "))
@@ -152,15 +149,18 @@ class Twamp:
         print("Your new happiness level is " +str(self.happiness))
         print("\n")
 
-        
 
-    def greek_life(self):
-        pass
+    def get_clases(self):
+        self.clases = input('Enter number of classes enrolled in: ')
+        print('\n')
+        print('You are enrolled in ' + self.clases + ' classes.')
+        print('\n')
+
 
     def major(self):
-        self.maj = input('Majors Include: STEM or Not STEM: ')
+        print('Majors Include: STEM or Not STEM ')
         print("\n")
-        print('Choose Your Fate Wisely: ' + self.maj)
+        self.maj = input('Choose Your Fate Wisely: ' + self.maj)
         print("\n")
         if self.maj.lower() == 'stem':
             self.stres += 20
@@ -189,10 +189,9 @@ class Twamp:
                 """)
             print("\n")
 
+
     def exams(self):
-        c_num = input('Enter Number of Classes Enrolled In: ')
-        print("\n")
-        self.schedule = c_num
+        self.schedule = self.clases
         grades = []
         if self.hours > 2:
             for i in range(int(self.schedule)):
@@ -206,7 +205,7 @@ class Twamp:
         
         
         for i in grades:
-            print('This is your exam grades for your class: ' + str(i) +"%.")
+            print('This is your exam grade for your class: ' + str(i) +"%.")
             print("\n")
             if i < 50 and self.maj == "stem":
                 print("That's an A with a curve!")
@@ -222,31 +221,41 @@ class Twamp:
 
 
 
-
+    def new_day(self):
+        pass
 
 
     def disaster(self):
         #poss_diss_list = [insta_hack, forgot_hw, dorm_fire]
-        poss_diss = ['your instgram was hacked', 'The dorm fire alarm went off when there was actually a fire', 'You forgot there was a test']
+        poss_diss = ['Your instagram was hacked', 'The dorm fire alarm went off when there was actually a fire', 'You forgot there was a test']
         diss = random.choice(poss_diss)
         print(diss)
         if diss == poss_diss[0]:
             poss_stole = ['your inside jokes','your dog pictures','your unflattering pictures','pictures of the homework you send to your friend. It\'s okay, you probably failed anyways.','pictures about your embarassing hobby']
             print('the hacker stole ' + random.choice(poss_stole))
             self.happiness -= 20
-            print('You are slowly losing you lust for life. Your happiness is now',self.happiness)
+            print('You are slowly losing your lust for life. Your happiness is now',self.happiness)
       
         elif diss == poss_diss[1]:
            poss_lost = ['your computer','your textbook','your hopes and dreams']
            print('Your dorm caught on fire. You lost ' + random.choice(poss_lost))
            self.happiness -= 10
-           print('You are slowly losing you lust for life. Your happiness is now',self.happiness)
+           print('You are slowly losing your lust for life. Your happiness is now',self.happiness)
       
         elif diss == poss_diss[2]:
            print('This is what you get for skipping class to sleep in')
            self.stres += 10
            print('You are stressed and dropping out seems like a better idea everyday. You are slowly losing your youthful optimism. Your stress is now',self.stres)
     
+
+    def game_over(self): 
+        choices = ["stress", "disaster", "housing"]
+        choice = random.choice(choices)
+        print("\n")
+        print(" \\  /")
+        print("o----")
+        print(" /  \\")
+
 
     def shower(self):
         print(" \n ")
@@ -265,7 +274,7 @@ class Twamp:
             print('\n')
         if self.maj.lower() == "stem":
             print(" \n ")
-            print("You broke the sterotype by showering as a stem major!")
+            print("You broke the stereotype by showering as a stem major!")
             self.hygiene += 5
             self.health += 2 
         else:
@@ -275,7 +284,7 @@ class Twamp:
 
     def housing_crisis(self):
         print("You got kicked out of GGV for setting the fire alarm off!")
-        print("Kathy Rowe says you have in a tent.")
+        print("Kathy Rowe says you have to live in a tent.")
         print("This is your new home.")
         print("Welcome to Tent City!")
         print("   /\\")
@@ -288,16 +297,15 @@ class Twamp:
         self.hygiene -= 20 
         self.sleep -= 1 
         
-    
 
     def main_game(self):
         setup = True 
         while setup:
-            options = ["Set Name", "Get Status", "Meal Plan", "Set Major", "Quit Setup" ]
+            options = ["Set Name", "Get Status", "Meal Plan", "Set Major", "Set Classes", "Quit Setup" ]
             for option in options:
-                print(" \n "+ option)
+                print(" \n " + option)
             print(" \n ")
-            pick = input("Pick a option: ")
+            pick = input("Pick an option: ")
             if pick.lower() == "get status":
                 self.get_status()
             elif pick.lower() == "set name":
@@ -306,11 +314,14 @@ class Twamp:
                 self.meal_plan()
             elif pick.lower() == "set major":
                 self.major()
+            elif pick.lower() == "set classes":
+                self.get_clases()
             elif pick.lower() == "quit setup":
                 setup = False 
             else:
                 print("Not a valid option")
-  
+
+
     def choices(self):
         setup = True 
         while setup:
@@ -345,16 +356,14 @@ class Twamp:
             self.housing_crisis()
 
 
- 
 if __name__ == '__main__':
 
-    #exampls of twamps 
+    #examples of twamps 
     print("\n ")
     print("\n ")
-    tprint("TWAMP Simulator")
+    #tprint("TWAMP Simulator")
     print("\n ")
     print("\n ")
-
 
 
     #tprint("Welcome Home!")
@@ -367,7 +376,8 @@ if __name__ == '__main__':
     test.main_game()
     test.choices()
     test.random_game()
-   
+    #end game 
+       
     
 
 
