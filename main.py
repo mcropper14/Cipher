@@ -139,13 +139,15 @@ class Twamp:
 
         
     def spend(self):
-        choice = input("Where do you want to spend your dining dollars: Caf or Sadler ")
+        choice = input("Where do you want to spend your dining dollars: Caf or Sadler or Aromas ")
         print("Caf or Sadler?")
         if self.d_dollars > 0:
             if choice.lower() == "caf":
                 self.d_dollars -= 10 
             elif choice.lower() == "sadler":
                 self.d_dollars -= 15
+            elif choice.lower() == "aromas":
+                self.d_dollars -= 5 
         print('You now have ' + str(self.d_dollars) + ' dining dollars.')
     
 
@@ -412,7 +414,7 @@ if __name__ == '__main__':
     #tprint("You Belong Here!")
 
     test = Twamp()
-    #test.main_game()
+    test.main_game()
     test.new_day(7)
    
     
