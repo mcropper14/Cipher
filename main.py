@@ -19,10 +19,13 @@ class Twamp:
         self.stres = 50 
         self.hours = 1 
         self.maj =""
+        self.days = 0 
+        self.clases = 0
         #self.schedule = 0 
 
     def get_status(self):
         print("Attributes: ")
+        self.get_calc()
         print("\n " + " Your name is: " + self.name)
         print("\n " + " Your major is " + self.maj)
         print("\n " + " Your happiness level is: " + str(self.happiness))
@@ -190,21 +193,19 @@ class Twamp:
             print("\n")
 
     def exams(self):
-        c_num = input('Enter Number of Classes Enrolled In: ')
-        print("\n")
-        self.schedule = c_num
         grades = []
         if self.hours > 2:
-            for i in range(int(self.schedule)):
+            for i in range(int(self.clases)):
+                
                 grade = random.randint(0,100)
                 grade += (self.hours *5)
                 grades.append(grade)
         else:
-            for i in range(int(self.schedule)):
+            for i in range(int(self.clases)):
                 grade = random.randint(0,100)
                 grades.append(grade)
         
-        
+        print(grades)
         for i in grades:
             print('This is your exam grades for your class: ' + str(i) +"%.")
             print("\n")
@@ -219,7 +220,6 @@ class Twamp:
                 / \\
                    
                     """)
-
 
 
 
@@ -287,13 +287,25 @@ class Twamp:
         self.health -= 1 
         self.hygiene -= 20 
         self.sleep -= 1 
+        self.stres += 5 
         
     
+    def get_clases(self):
+        self.clases = int(input('Enter number of classes enrolled in: '))
+        print('\n')
+        print('You are enrolled in ' + str(self.clases) + ' classes.')
+        print('\n')
+        
+
+    
+
+
+
 
     def main_game(self):
         setup = True 
         while setup:
-            options = ["Set Name", "Get Status", "Meal Plan", "Set Major", "Quit Setup" ]
+            options = ["Set Name", "Get Status", "Meal Plan", "Set Major", "Classes", "Quit Setup" ]
             for option in options:
                 print(" \n "+ option)
             print(" \n ")
@@ -308,29 +320,59 @@ class Twamp:
                 self.major()
             elif pick.lower() == "quit setup":
                 setup = False 
+            elif pick.lower() == "classes":
+                self.get_clases()
             else:
                 print("Not a valid option")
   
     def choices(self):
-        setup = True 
-        while setup:
-            options = ["Spend", "Swem", "Club", "Shower", "End Day" ]
+        action_count = 0 
+        for i in range(5):
+            options = ["Spend", "Swem", "Shower"]
             for option in options:
                 print(" \n "+ option)
             print(" \n ")
             pick = input("Pick a option: ")
             if pick.lower() == "spend":
                 self.spend()
+                action_count += 1 
             elif pick.lower() == "swem":
                 self.swem()
-            elif pick.lower() == "club":
-                self.club()
-            elif pick.lower() == "end day":
-                setup = False 
+                action_count += 1
             elif pick.lower() == "shower":
                 self.shower()
+                action_count += 1
             else:
                 print("Not a valid option")
+
+    def new_day(self, days):
+        
+        for i in range(days):
+            self.days += 1 
+            print("Good Morning! ")
+            print("It's a new day")
+            go_to_class = input("Do you want to go to your classes: ")
+            if go_to_class.lower() == "yes" or go_to_class.lower() == "y":
+                print("Way to be a twamp, you decided to go to class!")
+                self.twampness += 5 
+                self.caffinate += 5
+                self.choices()
+                self.exams()
+            else:
+                print("Wow, you must be skipping class to study.")
+                print("Typical Twamp behavior")
+                self.twampness += 10 
+                self.stres += 5 
+                self.happiness += 10 
+                self.choices()
+                self.exams()
+        
+        print("Congrats!! You survived William and Mary!")
+        print("Congratulations!")
+        for i in range(5):
+            print('\n' * 5)
+            print((' ' * i) + "Congrats!!You survived William and Mary!!")
+            time.sleep(0.5)
 
 
     def random_game(self):
@@ -362,11 +404,9 @@ if __name__ == '__main__':
 
 
     test = Twamp()
-    
-    
+    test.exams()
     test.main_game()
-    test.choices()
-    test.random_game()
+    test.new_day(7)
    
     
 
