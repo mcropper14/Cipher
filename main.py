@@ -1,4 +1,3 @@
-
 import random 
 from art import *
 import time 
@@ -156,10 +155,6 @@ class Twamp:
         print("\n")
 
         
-
-    def greek_life(self):
-        pass
-
     def major(self):
         self.maj = input('Majors Include: STEM or Not STEM: ')
         print("\n")
@@ -407,6 +402,7 @@ if __name__ == '__main__':
     test.exams()
     test.main_game()
     test.new_day(7)
+<<<<<<< HEAD
    
     
 
@@ -434,3 +430,5 @@ if __name__ == '__main__':
     myra.exams()
     myra.spend()
     """
+=======
+>>>>>>> 99a1db6db3ebe1185787bfe6e92413a88af26c17
